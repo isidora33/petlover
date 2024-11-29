@@ -58,42 +58,42 @@ const services = [
       iconClass: "flaticon-house",
       title: "Pet Boarding",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
+        "Your pet will stay in a safe and cozy space with plenty of care and attention while you’re away.",
       linkText: "Read More",
     },
     {
       iconClass: "flaticon-food",
       title: "Pet Feeding",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
-      linkText: "Read More",
+        "We prepare and serve healthy, balanced meals tailored to your pet’s specific dietary needs.",   
+     linkText: "Read More",
     },
     {
       iconClass: "flaticon-grooming",
       title: "Pet Grooming",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
+        "Keep your pet looking great with our gentle grooming services, including bathing and trimming.",    
       linkText: "Read More",
     },
     {
       iconClass: "flaticon-cat",
       title: "Pet Training",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
+        "Help your pet learn new skills and good behavior with our expert training sessions.",
       linkText: "Read More",
     },
     {
       iconClass: "flaticon-dog",
       title: "Pet Exercise",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
+        "Keep your pet active and healthy with our fun and tailored exercise routines.",
       linkText: "Read More",
     },
     {
       iconClass: "flaticon-vaccine",
       title: "Pet Treatment",
       description:
-        "Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo",
+        "Ensure your pet’s health with our professional care and treatment services.",
       linkText: "Read More",
     },
   ];
@@ -172,7 +172,12 @@ const pricingPlans = [
   {
     title: "Basic",
     price: 49,
-    services: ["Feeding", "Boarding", "Spa & Grooming", "Veterinary Medicine"],
+    services: [
+      { name: "Feeding", available: true },
+      { name: "Boarding", available: true },
+      { name: "Spa & Grooming", available: false },
+      { name: "Veterinary Medicine", available: false }
+    ],
     imgSrc: "img/price-1.jpg",
     priceClass: "text-primary",
     btnClass: "btn-primary"
@@ -180,7 +185,12 @@ const pricingPlans = [
   {
     title: "Standard",
     price: 99,
-    services: ["Feeding", "Boarding", "Spa & Grooming", "Veterinary Medicine"],
+    services: [
+      { name: "Feeding", available: true },
+      { name: "Boarding", available: true },
+      { name: "Spa & Grooming", available: true },
+      { name: "Veterinary Medicine", available: false }
+    ],
     imgSrc: "img/price-2.jpg",
     priceClass: "text-secondary",
     btnClass: "btn-secondary"
@@ -188,7 +198,12 @@ const pricingPlans = [
   {
     title: "Premium",
     price: 149,
-    services: ["Feeding", "Boarding", "Spa & Grooming", "Veterinary Medicine"],
+    services: [
+      { name: "Feeding", available: true },
+      { name: "Boarding", available: true },
+      { name: "Spa & Grooming", available: true },
+      { name: "Veterinary Medicine", available: true }
+    ],
     imgSrc: "img/price-3.jpg",
     priceClass: "text-primary",
     btnClass: "btn-primary"
@@ -240,14 +255,14 @@ pricingPlans.forEach(plan => {
     liElement.classList.add('list-group-item', 'p-2');
 
     const iconElement = document.createElement('i');
-    if (service.includes('Spa') || service.includes('Veterinary')) {
-      iconElement.classList.add('fa', 'fa-times', 'text-danger', 'mr-2');
-    } else {
+    if (service.available) {
       iconElement.classList.add('fa', 'fa-check', 'text-secondary', 'mr-2');
+    } else {
+      iconElement.classList.add('fa', 'fa-times', 'text-primary', 'mr-2');
     }
     
     liElement.appendChild(iconElement);
-    liElement.appendChild(document.createTextNode(service));
+    liElement.appendChild(document.createTextNode(service.name));
     ulElement.appendChild(liElement);
   });
 
@@ -270,6 +285,7 @@ pricingPlans.forEach(plan => {
   colDiv.appendChild(cardDiv);
   pricingRow.appendChild(colDiv);
 });
+
 
   
 //Obrada forme
@@ -372,8 +388,6 @@ email.addEventListener("blur", () => {
   }
 });
 
-
-
 function validateDateTime() {
   if (reservationDate.selectedIndex === 0 || reservationTime.selectedIndex === 0) {
     reservationTime.nextElementSibling.textContent =
@@ -385,6 +399,25 @@ function validateDateTime() {
 
 reservationDate.addEventListener("change", validateDateTime);
 reservationTime.addEventListener("change", validateDateTime);
+
+// Selektuj dugme
+const backToTopButton = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) { 
+    backToTopButton.style.display = 'block';
+  } else {
+    backToTopButton.style.display = 'none';
+  }
+});
+
+backToTopButton.addEventListener('click', (event) => {
+  event.preventDefault(); 
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+  });
+});
 
 
 //jQuery
