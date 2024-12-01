@@ -41,6 +41,7 @@
   box-sizing: border-box;
 }
 html {
+  scroll-behavior: smooth;
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -655,14 +656,14 @@ a > code {
     transition: none;
   }
 }
-.form-control::-ms-expand {
+/* .form-control::-ms-expand {
   background-color: transparent;
   border: 0;
 }
 .form-control:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #495057;
-}
+} */
 .form-control:focus {
   color: #495057;
   background-color: #fff;
@@ -4233,9 +4234,19 @@ form#bookingForm button:hover {
   height: 47px;
 }
 .error {
-  font-size: 14px;
-  color: var(--primary);
+  font-size: 16px;
+  color: var(--danger);
   display: block;
+}
+.success {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--success);
+  display: block;
+}
+
+.invalid-input {
+  box-shadow: 0 0 0 0.2rem rgb(236, 142, 142);
 }
 .card-header {
   position: relative;
@@ -4296,4 +4307,78 @@ form#bookingForm button:hover {
 
 .back-to-top:hover {
   opacity: 1;
+}
+
+/* Pop up style */
+
+/* Popup pozadina */
+/* Popup pozadina */
+.popup {
+  display: none; /* Skriven dok nije aktiviran */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Poluprovidna pozadina */
+  z-index: 9999; /* Osiguraj da popup bude iznad ostalih elemenata */
+  overflow: hidden; /* Onemogući skrolovanje pozadine */
+  justify-content: center; /* Centriraj popup unutar pozadine */
+  align-items: center; /* Vertikalno i horizontalno centriranje */
+}
+
+/* Popup sadržaj */
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px; /* Postavljanje maksimalne širine popupa */
+  position: relative;
+  z-index: 10000; /* Osiguraj da je sadržaj popupa iznad pozadine */
+}
+
+/* Dugme za zatvaranje (iks) */
+.close {
+  font-size: 24px;
+  color: #000;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Stil za formu unutar popupa */
+.popup-content input,
+.popup-content select,
+.popup-content button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.popup-content input:focus,
+.popup-content select:focus,
+.popup-content button:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Prikazivanje popupa */
+.popup.visible {
+  display: flex; /* Popup je sada vidljiv */
+  justify-content: center; /* Centriraj popup u odnosu na pozadinu */
+  align-items: center;
+}
+
+/* Onemogući skrolovanje stranice dok je popup otvoren */
+body.popup-open {
+  overflow: hidden;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
 }

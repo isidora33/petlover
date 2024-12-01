@@ -56,7 +56,7 @@
               <p class="text-secondary m-0">8.00AM - 9.00PM</p>
             </div>
             <div
-              class="d-inline-flex flex-column text-center px-3 border-right"
+              class="d-none d-sm-flex flex-column text-center px-3 border-right"
             >
               <h6>Email Us</h6>
               <p class="text-secondary m-0">petlover@gmail.com</p>
@@ -297,7 +297,7 @@
     <!-- Pricing Plan End -->
 
     <!-- Team Start -->
-    <div class="container mt-5 pt-5 pb-3">
+    <div class="container mt-5 pt-5 pb-5">
       <div class="d-flex flex-column text-center mb-5">
         <h4 class="text-secondary mb-3">Team Member</h4>
         <h1 class="display-4 m-0">
@@ -314,11 +314,11 @@
               <div
                 class="team-text d-flex flex-column justify-content-center bg-light"
               >
-                <h5>Mollie Ross</h5>
+                <h5 class="font-weight-bold">Mollie Ross</h5>
                 <i>Founder & CEO</i>
               </div>
               <div
-                class="team-social d-flex align-items-center justify-content-center bg-dark"
+                class="team-social d-flex align-items-center justify-content-center bg-light"
               >
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -357,11 +357,11 @@
               <div
                 class="team-text d-flex flex-column justify-content-center bg-light"
               >
-                <h5>Jennifer Page</h5>
+                <h5 class="font-weight-bold">Jennifer Page</h5>
                 <i>Chef Executive</i>
               </div>
               <div
-                class="team-social d-flex align-items-center justify-content-center bg-dark"
+                class="team-social d-flex align-items-center justify-content-center bg-light"
               >
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -400,11 +400,11 @@
               <div
                 class="team-text d-flex flex-column justify-content-center bg-light"
               >
-                <h5>Kate Glover</h5>
+                <h5 class="font-weight-bold">Kate Glover</h5>
                 <i>Doctor</i>
               </div>
               <div
-                class="team-social d-flex align-items-center justify-content-center bg-dark"
+                class="team-social d-flex align-items-center justify-content-center bg-light"
               >
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -443,11 +443,11 @@
               <div
                 class="team-text d-flex flex-column justify-content-center bg-light"
               >
-                <h5>Lilly Fry</h5>
+                <h5 class="font-weight-bold">Lilly Fry</h5>
                 <i>Trainer</i>
               </div>
               <div
-                class="team-social d-flex align-items-center justify-content-center bg-dark"
+                class="team-social d-flex align-items-center justify-content-center bg-light"
               >
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -603,7 +603,7 @@
           </div>
 
           <div class="form-group">
-            <label class="label-form" for="reservationDate"
+            <label class="label-form" for="reservation-date"
               >Reservation Date & Time</label
             >
             <select id="reservation-date" class="custom-select border-0 px-4">
@@ -625,7 +625,7 @@
           </div>
 
           <div id="radio-pet-care" class="form-group">
-            <label class="label-form">Pet Care Options</label>
+            <label for="boarding" class="label-form">Pet Care Options</label>
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -675,9 +675,10 @@
           </div>
 
           <div>
+            <span class="error"></span>
             <button
               id="bookBtn"
-              class="btn btn-dark btn-block border-0 py-3"
+              class="btn btn-dark btn-block border-0 py-3 my-3"
               type="submit"
             >
               Book Now
@@ -835,6 +836,44 @@
     <a href="#" class="btn btn-lg btn-primary back-to-top"
       ><i class="fa fa-angle-double-up"></i
     ></a>
+
+    <!--Pop up-->
+    <div id="popup" class="popup hidden">
+      <div class="popup-content">
+        <span id="closePopup" class="close">&times;</span>
+        <h2>Sign Up</h2>
+        <form>
+          <label for="pricing-plan">Choose your plan:</label>
+          <select id="pricing-plan" name="plan" required>
+            <option value="choose">Choose</option>
+            <option value="basic">Basic Plan</option>
+            <option value="standard">Standard Plan</option>
+            <option value="premium">Premium Plan</option>
+          </select>
+          <span class="error"></span>
+          <input
+            type="text"
+            id="nameForPlan"
+            name="name"
+            placeholder="Your name"
+            required
+          />
+          <span class="error"></span>
+          <input
+            type="email"
+            id="emailForPlan"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
+
+          <span class="error"></span>
+          <button type="submit" class="btn btn-primary" id="submitPlan">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

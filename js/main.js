@@ -272,8 +272,8 @@ pricingPlans.forEach(plan => {
   cardFooterDiv.classList.add('card-footer', 'border-0', 'p-0');
 
   const btnElement = document.createElement('a');
-  btnElement.href = '#';
-  btnElement.classList.add('btn', plan.btnClass, 'btn-block', 'p-3');
+  btnElement.href = '#divPricing';
+  btnElement.classList.add('btn', plan.btnClass, 'btn-block', 'p-3','sign-up-btn');
   btnElement.textContent = 'Signup Now';
 
   cardFooterDiv.appendChild(btnElement);
@@ -297,11 +297,13 @@ var reservationTime = document.querySelector('#reservation-time');
 var radioButtons = document.getElementsByName('petCareOption');
 var terms = document.querySelector('#termsConditions');
 var bookingBtn = document.querySelector('#bookBtn');
+var divCareOptions = document.getElementById('radio-pet-care');
 
 
 var regUserName = /^[A-Z][a-z]{2,14}(\s[A-Z][a-z]{2,24})*$/;
 var regUserEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+//Funkcije za proveru svakog elementa forme
 function validateName() {
   return regUserName.test(userName.value);
 }
@@ -327,6 +329,7 @@ function validateTerms() {
   return terms.checked;
 }
 
+//Funkcija za proveru cele forme
 function validateForm(event) {
   event.preventDefault(); 
 
@@ -335,15 +338,22 @@ function validateForm(event) {
   document.querySelectorAll('.error').forEach((span) => (span.textContent = ''));
 
   if (!validateName()) {
+    userName.classList.add('invalid-input')
     userName.nextElementSibling.textContent =
       'Invalid name.';
     isValid = false;
+  }else{
+    userName.classList.remove('invalid-input')
   }
 
   if (!validateEmail()) {
+    email.classList.add('invalid-input')
     email.nextElementSibling.textContent =
       'Invalid email.';
     isValid = false;
+  }else{
+    email.classList.remove('invalid-input')
+
   }
 
   if (!selectedDateTime()) {
@@ -353,41 +363,60 @@ function validateForm(event) {
   }
 
   if (!validateRadio()) {
-    document
-      .getElementById('radio-pet-care')
-      .nextElementSibling.textContent = 'Choose an option.';
+    divCareOptions.nextElementSibling.textContent = 'Choose an option.';
     isValid = false;
   }
 
   if (!validateTerms()) {
-  terms.closest('.form-group').querySelector('.error').textContent =
-    'You must accept the terms and conditions.';
+  terms.closest('.form-group').querySelector('.error').textContent = 'You must accept the terms and conditions.';
   isValid = false;
 }
 
-  if (isValid) {
-    alert('Form submitted successfully!');
-  }
+if (isValid) {
+  bookingBtn.previousElementSibling.classList.remove('error');
+  bookingBtn.previousElementSibling.classList.add('success');
+  bookingBtn.previousElementSibling.textContent = 'Your appointment has been successfully booked!';
+}else{
+
+  bookingBtn.previousElementSibling.classList.remove('success');
+  bookingBtn.previousElementSibling.classList.add('error')
+  bookingBtn.previousElementSibling.textContent = 'Please make sure all fields are filled out correctly.';
+}
 }
 
+//Sta se desava klikom na dugme 
 bookingBtn.addEventListener('click', validateForm);
 
-userName.addEventListener("blur", () => {
+//Hvatanje gresaka u trenutku popunjavanja elemenata forme
+
+//Validacija imena tokom unosa
+userName.addEventListener("keyup", () => {
   if (validateName()) {
     userName.nextElementSibling.textContent = "";
+    userName.classList.remove('invalid-input');
   } else {
     userName.nextElementSibling.textContent = "Invalid name.";
   }
 });
 
-email.addEventListener("blur", () => {
+//Validacija email-a tokom unosa
+email.addEventListener("keyup", () => {
   if (validateEmail()) {
     email.nextElementSibling.textContent = ""; 
+    email.classList.remove('invalid-input');
   } else {
     email.nextElementSibling.textContent = "Invalid email.";
   }
 });
 
+//Provera da li je opcija izabrana
+divCareOptions.addEventListener('click', () => {
+  if(validateRadio()){
+    divCareOptions.nextElementSibling.textContent = '';
+  }
+})
+
+//Da li su izabrani i datum i vreme
 function validateDateTime() {
   if (reservationDate.selectedIndex === 0 || reservationTime.selectedIndex === 0) {
     reservationTime.nextElementSibling.textContent =
@@ -397,8 +426,78 @@ function validateDateTime() {
   }
 }
 
+terms.addEventListener('click', () =>{
+  if(validateTerms()){
+    terms.closest('.form-group').querySelector('.error').textContent = '';
+  } else{
+    terms.closest('.form-group').querySelector('.error').textContent = 'You must accept the terms and conditions.';    ;
+
+  }
+})
+
 reservationDate.addEventListener("change", validateDateTime);
 reservationTime.addEventListener("change", validateDateTime);
+
+//Validacija pop up forme
+
+var userNamePlan = document.querySelector('#nameForPlan');
+var emailPlan = document.querySelector('#emailForPlan');
+var submitPlan = document.querySelector('#submitPlan');
+var pricingPlan = document.querySelector('#pricing-plan')
+
+function validateNamePlan() {
+  return regUserName.test(userNamePlan.value);
+}
+
+function validateEmailPlan() {
+  return regUserEmail.test(emailPlan.value);
+}
+
+function selectedPlan() {
+  return pricingPlan.selectedIndex !== 0;
+}
+
+function validateFormPlan(event) {
+  event.preventDefault(); 
+
+  let isValid = true;
+
+  document.querySelectorAll('.error').forEach((span) => (span.textContent = ''));
+
+  if (!validateNamePlan()) {
+    userNamePlan.nextElementSibling.textContent =
+      'Invalid name.';
+    isValid = false;
+  }
+
+  if (!validateEmailPlan()) {
+    emailPlan.nextElementSibling.textContent =
+      'Invalid email.';
+    isValid = false;
+  }
+
+  if (!selectedPlan()) {
+
+    pricingPlan.nextElementSibling.textContent =
+      'Select a pricing plan.';
+    isValid = false;
+  }
+
+
+  if (isValid) {
+    submitPlan.previousElementSibling.classList.remove('error');
+    submitPlan.previousElementSibling.classList.add('success');
+    submitPlan.previousElementSibling.textContent = 'You’ve successfully signed up for the plan!';
+  }else{
+    submitPlan.previousElementSibling.classList.remove('success');
+    submitPlan.previousElementSibling.textContent = '';
+  }
+}
+
+submitPlan.addEventListener('click', validateFormPlan);
+
+
+
 
 // Selektuj dugme
 const backToTopButton = document.querySelector('.back-to-top');
@@ -444,3 +543,32 @@ backToTopButton.addEventListener('click', (event) => {
         }
     });
 })(jQuery);
+
+//jQuery pop up
+$(document).ready(function () {
+  // Kada se klikne na dugme "Sign Up"
+  $(".sign-up-btn").on("click", function () {
+    // Otvori popup
+    $("#popup").addClass("visible");
+    $("body").addClass("popup-open"); // Onemogući skrolovanje stranice
+  });
+
+  // Kada se klikne na dugme za zatvaranje popupa (X)
+  $(".close").on("click", function () {
+    $("#popup").removeClass("visible");
+    $("body").removeClass("popup-open"); // Ponovo dozvoli skrolovanje
+  });
+
+  // Opcionalno: Zatvori popup klikom izvan njega (na pozadinu)
+  $("#popup").on("click", function (e) {
+    if (e.target === this) {
+      $(this).removeClass("visible");
+      $("body").removeClass("popup-open"); // Ponovo dozvoli skrolovanje
+    }
+  });
+});
+
+
+
+
+
