@@ -54,53 +54,53 @@ if(navMenu) {
 
 //Dinamicko ispisivanje Services
 const services = [
-    {
-      iconClass: "flaticon-house",
-      title: "Pet Boarding",
-      description:
-        "Your pet will stay in a safe and cozy space with plenty of care and attention while you’re away.",
-      linkText: "Read More",
-    },
-    {
-      iconClass: "flaticon-food",
-      title: "Pet Feeding",
-      description:
-        "We prepare and serve healthy, balanced meals tailored to your pet’s specific dietary needs.",   
-     linkText: "Read More",
-    },
-    {
-      iconClass: "flaticon-grooming",
-      title: "Pet Grooming",
-      description:
-        "Keep your pet looking great with our gentle grooming services, including bathing and trimming.",    
-      linkText: "Read More",
-    },
-    {
-      iconClass: "flaticon-cat",
-      title: "Pet Training",
-      description:
-        "Help your pet learn new skills and good behavior with our expert training sessions.",
-      linkText: "Read More",
-    },
-    {
-      iconClass: "flaticon-dog",
-      title: "Pet Exercise",
-      description:
-        "Keep your pet active and healthy with our fun and tailored exercise routines.",
-      linkText: "Read More",
-    },
-    {
-      iconClass: "flaticon-vaccine",
-      title: "Pet Treatment",
-      description:
-        "Ensure your pet’s health with our professional care and treatment services.",
-      linkText: "Read More",
-    },
-  ];
+  {
+    iconClass: "flaticon-house",
+    title: "Pet Boarding",
+    description: "Your pet will stay in a safe and cozy space with plenty of care and attention while you’re away.",
+    linkText: "Read More",
+    extendedDescription: "Our boarding includes daily walks, playtime, and regular updates for your peace of mind.",
+  },
+  {
+    iconClass: "flaticon-food",
+    title: "Pet Feeding",
+    description: "We prepare and serve healthy, balanced meals tailored to your pet’s specific dietary needs.",
+    linkText: "Read More",
+    extendedDescription: "We use high-quality ingredients and follow specific feeding schedules.",
+  },
+  {
+    iconClass: "flaticon-grooming",
+    title: "Pet Grooming",
+    description: "Keep your pet looking great with our gentle grooming services, including bathing and trimming.",
+    linkText: "Read More",
+    extendedDescription: "Our grooming also includes nail trimming and ear cleaning.",
+  },
+  {
+    iconClass: "flaticon-cat",
+    title: "Pet Training",
+    description: "Help your pet learn new skills and good behavior with our expert training sessions.",
+    linkText: "Read More",
+    extendedDescription: "We offer obedience training, agility, and behavior correction.",
+  },
+  {
+    iconClass: "flaticon-dog",
+    title: "Pet Exercise",
+    description: "Keep your pet active and healthy with our fun and tailored exercise routines.",
+    linkText: "Read More",
+    extendedDescription: "Daily exercise includes structured play and fitness activities.",
+  },
+  {
+    iconClass: "flaticon-vaccine",
+    title: "Pet Treatment",
+    description: "Ensure your pet’s health with our professional care and treatment services.",
+    linkText: "Read More",
+    extendedDescription: "Our services include vaccinations, checkups, and emergency care.",
+  },
+];
   
   const serviceContainer = document.getElementById("service-container");
   
-  services.forEach((service) => {
+  services.forEach((service, index) => {
     const colDiv = document.createElement("div");
     colDiv.className = "col-md-6 col-lg-4 mb-4";
   
@@ -116,22 +116,44 @@ const services = [
     title.textContent = service.title;
   
     const description = document.createElement("p");
+    description.className = "description"; // Klasa za osnovni opis
     description.textContent = service.description;
   
-    const link = document.createElement("a");
-    link.className = "text-uppercase font-weight-bold";
-    link.href = "#divAbout";
-    link.textContent = service.linkText;
+    const extendedText = document.createElement("span");
+    extendedText.className = `extended-text extended-text-${index}`; // Primena nove klase
+    extendedText.style.display = "none"; // Sakrij po defaultu
+    extendedText.textContent = ` ${service.extendedDescription}`; // Dodaj razmak samo ako treba
+  
+    description.appendChild(extendedText); // Dodaj span unutar paragrafa
+  
+    const toggleLink = document.createElement("a");
+    toggleLink.className = "text-uppercase font-weight-bold toggle-link";
+    toggleLink.href = "#"; // Sprečava preusmeravanje
+    toggleLink.textContent = "Read More"; // Tekst Read More inicijalno
+  
+    // jQuery Read more/Read less
+    $(toggleLink).on("click", function (e) {
+      e.preventDefault(); 
+  
+      $(extendedText).toggle();
+  
+      if ($(this).text() === "Read More") {
+        $(this).text("Read Less");
+      } else {
+        $(this).text("Read More");
+      }
+    });
   
     cardDiv.appendChild(icon);
     cardDiv.appendChild(title);
-    cardDiv.appendChild(description);
-    cardDiv.appendChild(link);
+    cardDiv.appendChild(description); // Dodaj sve zajedno
+    cardDiv.appendChild(toggleLink); // Dodaj link
     colDiv.appendChild(cardDiv);
   
     serviceContainer.appendChild(colDiv);
   });
-
+  
+  
 
 //Dinamicko ispisivanje Features
 
@@ -518,33 +540,7 @@ backToTopButton.addEventListener('click', (event) => {
   });
 });
 
-
-//jQuery
-(function($){
-    $(".testimonial-carousel").owlCarousel({
-        center: true,
-        autoplay: true,
-        smartSpeed: 2000,  
-        dots: true,
-        loop: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            576: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
-        }
-    });
-})(jQuery);
-
-//jQuery pop up
+//jQuery pop up i read more button
 $(document).ready(function () {
   // Kada se klikne na dugme "Sign Up"
   $(".sign-up-btn").on("click", function () {
@@ -566,7 +562,36 @@ $(document).ready(function () {
       $("body").removeClass("popup-open"); // Ponovo dozvoli skrolovanje
     }
   });
+
+
+
+
 });
+
+//jQuery
+(function($){
+  $(".testimonial-carousel").owlCarousel({
+      center: true,
+      autoplay: true,
+      smartSpeed: 2000,  
+      dots: true,
+      loop: true,
+      responsive: {
+          0: {
+              items: 1
+          },
+          576: {
+              items: 1
+          },
+          768: {
+              items: 2
+          },
+          992: {
+              items: 3
+          }
+      }
+  });
+})(jQuery);
 
 
 

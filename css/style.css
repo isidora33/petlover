@@ -4382,3 +4382,9 @@ body.popup-open {
 .text-uppercase {
   text-transform: uppercase !important;
 }
+
+.extended-text {
+  display: inline; /* Osigurava da tekst ide u istom redu */
+  margin: 0; /* Uklanja dodatne margine */
+  padding: 0; /* Uklanja dodatne padding vrednosti */
+}
