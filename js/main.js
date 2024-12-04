@@ -8,7 +8,7 @@ let links = [
     },
     {
         path : "index.html#divBooking",
-        text: "Booking",
+        text: "Book Now",
         isActive: false
     },
     {
@@ -32,6 +32,16 @@ let links = [
         text: "Pricing",
         isActive: false
     },
+    {
+      path : "index.html#divTeam",
+      text: "Our Team",
+      isActive: false
+  },
+  {
+    path : "index.html#divFAQ",
+    text: "FAQ",
+    isActive: false
+},
     
 ]
 
@@ -106,7 +116,7 @@ const services = [
   
     const cardDiv = document.createElement("div");
     cardDiv.className =
-      "d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5";
+      "d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5 hiddenDiv";
   
     const icon = document.createElement("h3");
     icon.className = `${service.iconClass} display-3 font-weight-normal text-secondary mb-3`;
@@ -116,20 +126,20 @@ const services = [
     title.textContent = service.title;
   
     const description = document.createElement("p");
-    description.className = "description"; // Klasa za osnovni opis
+    description.className = "description"; 
     description.textContent = service.description;
   
     const extendedText = document.createElement("span");
-    extendedText.className = `extended-text extended-text-${index}`; // Primena nove klase
-    extendedText.style.display = "none"; // Sakrij po defaultu
-    extendedText.textContent = ` ${service.extendedDescription}`; // Dodaj razmak samo ako treba
+    extendedText.className = `extended-text extended-text-${index}`; 
+    extendedText.style.display = "none"; 
+    extendedText.textContent = ` ${service.extendedDescription}`; 
   
-    description.appendChild(extendedText); // Dodaj span unutar paragrafa
+    description.appendChild(extendedText);
   
     const toggleLink = document.createElement("a");
     toggleLink.className = "text-uppercase font-weight-bold toggle-link";
-    toggleLink.href = "#"; // Sprečava preusmeravanje
-    toggleLink.textContent = "Read More"; // Tekst Read More inicijalno
+    toggleLink.href = "#"; 
+    toggleLink.textContent = "Read More"; 
   
     // jQuery Read more/Read less
     $(toggleLink).on("click", function (e) {
@@ -146,8 +156,8 @@ const services = [
   
     cardDiv.appendChild(icon);
     cardDiv.appendChild(title);
-    cardDiv.appendChild(description); // Dodaj sve zajedno
-    cardDiv.appendChild(toggleLink); // Dodaj link
+    cardDiv.appendChild(description); 
+    cardDiv.appendChild(toggleLink); 
     colDiv.appendChild(cardDiv);
   
     serviceContainer.appendChild(colDiv);
@@ -168,7 +178,7 @@ const featureRow = document.getElementById('featureRow');
 
 features.forEach(feature => {
   const colDiv = document.createElement('div');
-  colDiv.classList.add('col-6');
+  colDiv.classList.add('col-6','hiddenDiv');
 
   const dFlexDiv = document.createElement('div');
   dFlexDiv.classList.add('d-flex', 'align-items-center', 'mb-4');
@@ -236,7 +246,7 @@ const pricingRow = document.getElementById('pricingRow');
 
 pricingPlans.forEach(plan => {
   const colDiv = document.createElement('div');
-  colDiv.classList.add('col-lg-4', 'mb-4');
+  colDiv.classList.add('col-lg-4', 'mb-4','hiddenDiv');
 
   const cardDiv = document.createElement('div');
   cardDiv.classList.add('card', 'border-0');
@@ -294,7 +304,7 @@ pricingPlans.forEach(plan => {
   cardFooterDiv.classList.add('card-footer', 'border-0', 'p-0');
 
   const btnElement = document.createElement('a');
-  btnElement.href = '#divPricing';
+  btnElement.href = '#';
   btnElement.classList.add('btn', plan.btnClass, 'btn-block', 'p-3','sign-up-btn');
   btnElement.textContent = 'Signup Now';
 
@@ -447,21 +457,19 @@ function validateDateTime() {
     reservationTime.nextElementSibling.textContent = ""; 
   }
 }
+reservationDate.addEventListener("change", validateDateTime);
+reservationTime.addEventListener("change", validateDateTime);
 
+//Da li je terms checked
 terms.addEventListener('click', () =>{
   if(validateTerms()){
     terms.closest('.form-group').querySelector('.error').textContent = '';
   } else{
     terms.closest('.form-group').querySelector('.error').textContent = 'You must accept the terms and conditions.';    ;
-
   }
 })
 
-reservationDate.addEventListener("change", validateDateTime);
-reservationTime.addEventListener("change", validateDateTime);
-
 //Validacija pop up forme
-
 var userNamePlan = document.querySelector('#nameForPlan');
 var emailPlan = document.querySelector('#emailForPlan');
 var submitPlan = document.querySelector('#submitPlan');
@@ -487,19 +495,25 @@ function validateFormPlan(event) {
   document.querySelectorAll('.error').forEach((span) => (span.textContent = ''));
 
   if (!validateNamePlan()) {
+    userNamePlan.classList.add('invalid-input')
     userNamePlan.nextElementSibling.textContent =
       'Invalid name.';
     isValid = false;
+  }else{
+    userNamePlan.classList.remove('invalid-input')
   }
 
   if (!validateEmailPlan()) {
+    emailPlan.classList.add('invalid-input')
     emailPlan.nextElementSibling.textContent =
       'Invalid email.';
     isValid = false;
+  }else{
+    emailPlan.classList.remove('invalid-input')
+
   }
 
   if (!selectedPlan()) {
-
     pricingPlan.nextElementSibling.textContent =
       'Select a pricing plan.';
     isValid = false;
@@ -509,7 +523,7 @@ function validateFormPlan(event) {
   if (isValid) {
     submitPlan.previousElementSibling.classList.remove('error');
     submitPlan.previousElementSibling.classList.add('success');
-    submitPlan.previousElementSibling.textContent = 'You’ve successfully signed up for the plan!';
+    submitPlan.previousElementSibling.textContent = 'You’ve successfully signed up for our plan!';
   }else{
     submitPlan.previousElementSibling.classList.remove('success');
     submitPlan.previousElementSibling.textContent = '';
@@ -518,10 +532,40 @@ function validateFormPlan(event) {
 
 submitPlan.addEventListener('click', validateFormPlan);
 
+//Hvatanje gresaka u trenutku popunjavanja elemenata forme
 
+//Validacija imena tokom unosa
+userNamePlan.addEventListener("keyup", () => {
+  if (validateNamePlan()) {
+    userNamePlan.nextElementSibling.textContent = "";
+    userNamePlan.classList.remove('invalid-input');
+  } else {
+    userNamePlan.nextElementSibling.textContent = "Invalid name.";
+  }
+});
 
+//Validacija email-a tokom unosa
+emailPlan.addEventListener("keyup", () => {
+  if (validateEmailPlan()) {
+    emailPlan.nextElementSibling.textContent = ""; 
+    emailPlan.classList.remove('invalid-input');
+  } else {
+    emailPlan.nextElementSibling.textContent = "Invalid email.";
+  }
+});
 
-// Selektuj dugme
+//Da li je plan selektovan
+
+pricingPlan.addEventListener("change",()=>{
+  if(!selectedPlan()){
+    pricingPlan.nextElementSibling.textContent =
+      'Please select a plan.';
+  }else{
+    pricingPlan.nextElementSibling.textContent =
+      '';
+  }
+})
+
 const backToTopButton = document.querySelector('.back-to-top');
 
 window.addEventListener('scroll', () => {
@@ -540,58 +584,96 @@ backToTopButton.addEventListener('click', (event) => {
   });
 });
 
-//jQuery pop up i read more button
+//jQuery 
 $(document).ready(function () {
-  // Kada se klikne na dugme "Sign Up"
-  $(".sign-up-btn").on("click", function () {
-    // Otvori popup
+  //Animacija za pojavljivanje odredjenih delova stranice tokom skrolovanja
+  function animateOnScroll() {
+    $('.hiddenDiv').each(function () {
+      const elementTop = $(this).offset().top;
+      const windowBottom = $(window).scrollTop() + $(window).height();
+
+      if (elementTop < windowBottom - 50) {
+        $(this).addClass('visible');
+      }
+    });
+  }
+  animateOnScroll();
+  $(window).on('scroll', animateOnScroll);
+
+  //Sign up popup
+  $(".sign-up-btn").on("click", function (e) {
+    e.preventDefault();
+
     $("#popup").addClass("visible");
-    $("body").addClass("popup-open"); // Onemogući skrolovanje stranice
+    $("body").addClass("popup-open"); 
   });
 
-  // Kada se klikne na dugme za zatvaranje popupa (X)
+  
   $(".close").on("click", function () {
     $("#popup").removeClass("visible");
-    $("body").removeClass("popup-open"); // Ponovo dozvoli skrolovanje
+    $("body").removeClass("popup-open"); 
   });
 
-  // Opcionalno: Zatvori popup klikom izvan njega (na pozadinu)
   $("#popup").on("click", function (e) {
     if (e.target === this) {
       $(this).removeClass("visible");
-      $("body").removeClass("popup-open"); // Ponovo dozvoli skrolovanje
+      $("body").removeClass("popup-open");
     }
   });
 
+  //FAQ dropdown
+  $(".faq-question").click(function() {
+    var $answer = $(this).next(".faq-answer");
 
+    $answer.stop().slideToggle();
+  
+    $(this).toggleClass("active");
 
+    $(".faq-answer").not($answer).slideUp();  
+    $(".faq-question").not(this).removeClass("active");  
+  });
+
+  //Back-to-top
+  var isBouncing = false;  
+   
+  $('.back-to-top').hide();
+
+  let bounceTimeout;
+
+  function startBounce() {
+    if ($('.back-to-top').is(':visible')) {
+      $('.back-to-top')
+        .animate({ bottom: '30px' }, 1000)  
+        .animate({ bottom: '20px' }, 1000, function() {  
+          if ($('.back-to-top').is(':visible') && isBouncing) {
+            startBounce();  
+          }
+        });
+    }
+  }
+  
+  $(window).on('scroll', function() {
+    if ($(this).scrollTop() > 100) { 
+      if (!$('.back-to-top').is(':visible')) {
+        $('.back-to-top').fadeIn(300);  
+        isBouncing = true;  
+        startBounce();  
+      }
+  
+      clearTimeout(bounceTimeout);  
+      bounceTimeout = setTimeout(function() {
+        isBouncing = false;  
+      }, 5000);  
+    } else {
+      $('.back-to-top').fadeOut(300);  
+      isBouncing = false;  
+    }
+  });
 
 });
+  
 
-//jQuery
-(function($){
-  $(".testimonial-carousel").owlCarousel({
-      center: true,
-      autoplay: true,
-      smartSpeed: 2000,  
-      dots: true,
-      loop: true,
-      responsive: {
-          0: {
-              items: 1
-          },
-          576: {
-              items: 1
-          },
-          768: {
-              items: 2
-          },
-          992: {
-              items: 3
-          }
-      }
-  });
-})(jQuery);
+
 
 
 

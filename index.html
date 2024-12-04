@@ -116,7 +116,7 @@
             <div
               class="carousel-caption d-flex flex-column align-items-center justify-content-center"
             >
-              <div class="p-3" style="max-width: 900px">
+              <div class="p-3 hiddenDiv" style="max-width: 900px">
                 <h3 class="text-white mb-3 d-none d-sm-block">
                   Best Pet Services
                 </h3>
@@ -210,7 +210,7 @@
             feels at home while you're away. From cozy beds to fun playtimes, we
             make every moment special for them.
           </p>
-          <ul class="list-inline">
+          <ul class="list-inline hiddenDiv">
             <li>
               <h5>
                 <i class="fa fa-check-double text-secondary mr-3"></i>Best In
@@ -230,7 +230,9 @@
               </h5>
             </li>
           </ul>
-          <a href="" class="btn btn-lg btn-primary mt-3 px-4">Learn More</a>
+          <a href="#divService" class="btn btn-lg btn-primary mt-3 px-4"
+            >Learn More</a
+          >
         </div>
         <div class="col-lg-5">
           <div class="row px-3">
@@ -300,14 +302,14 @@
     <!-- Pricing Plan End -->
 
     <!-- Team Start -->
-    <div class="container mt-5 pt-5 pb-5">
+    <div id="divTeam" class="container mt-5 pt-5 pb-5">
       <div class="d-flex flex-column text-center mb-5">
         <h4 class="text-secondary mb-3">Team Member</h4>
         <h1 class="display-4 m-0">
           Meet Our <span class="text-primary">Team Member</span>
         </h1>
       </div>
-      <div class="row">
+      <div class="row hiddenDiv mb-4">
         <div class="col-lg-3 col-md-6">
           <div
             class="team card position-relative overflow-hidden border-0 mb-4"
@@ -483,98 +485,10 @@
       </div>
     </div>
     <!-- Team End -->
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid bg-light p-0 py-5">
-      <div class="container p-0 py-5">
-        <div class="d-flex flex-column text-center mb-5">
-          <h4 class="text-secondary mb-3">Testimonial</h4>
-          <h1 class="display-4 m-0">
-            Our Client <span class="text-primary">Says</span>
-          </h1>
-        </div>
-        <div class="owl-carousel testimonial-carousel">
-          <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-              <img
-                class="img-fluid"
-                src="img/testimonial-1.jpg"
-                style="width: 80px; height: 80px"
-                alt=""
-              />
-              <div class="ml-3">
-                <h5>Client Name</h5>
-                <i>Profession</i>
-              </div>
-            </div>
-            <p class="m-0">
-              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-              eirmod clita lorem. Dolor tempor ipsum sanct clita
-            </p>
-          </div>
-          <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-              <img
-                class="img-fluid"
-                src="img/testimonial-2.jpg"
-                style="width: 80px; height: 80px"
-                alt=""
-              />
-              <div class="ml-3">
-                <h5>Client Name</h5>
-                <i>Profession</i>
-              </div>
-            </div>
-            <p class="m-0">
-              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-              eirmod clita lorem. Dolor tempor ipsum sanct clita
-            </p>
-          </div>
-          <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-              <img
-                class="img-fluid"
-                src="img/testimonial-3.jpg"
-                style="width: 80px; height: 80px"
-                alt=""
-              />
-              <div class="ml-3">
-                <h5>Client Name</h5>
-                <i>Profession</i>
-              </div>
-            </div>
-            <p class="m-0">
-              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-              eirmod clita lorem. Dolor tempor ipsum sanct clita
-            </p>
-          </div>
-          <div class="bg-white mx-3 p-4">
-            <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-              <img
-                class="img-fluid"
-                src="img/testimonial-4.jpg"
-                style="width: 80px; height: 80px"
-                alt=""
-              />
-              <div class="ml-3">
-                <h5>Client Name</h5>
-                <i>Profession</i>
-              </div>
-            </div>
-            <p class="m-0">
-              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
-              eirmod clita lorem. Dolor tempor ipsum sanct clita
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Testimonial End -->
-
     <!-- Booking Form Start -->
     <div id="divBooking" class="container-fluid bg-light py-5">
       <div
-        class="container d-flex justify-content-center align-items-center"
+        class="container d-flex justify-content-center align-items-center hiddenDiv"
         style="min-height: 100vh"
       >
         <form id="bookingForm" class="bg-white p-5 rounded shadow-lg">
@@ -692,19 +606,84 @@
     </div>
     <!-- Booking Form End -->
 
+    <!-- FAQ Start -->
+    <div id="divFAQ" class="container-fluid pt-5 pb-5 mt-2 bg-light">
+      <div class="d-flex flex-column text-center mb-5 mt-4">
+        <h4 class="text-secondary mb-3">Frequently Asked Questions</h4>
+        <h1 class="display-4 m-0">
+          Have Questions About
+          <span class="text-primary">Our Services</span>?
+        </h1>
+      </div>
+      <div class="row justify-content-center mb-5">
+        <div class="col-10">
+          <div class="faq-item">
+            <button class="faq-question">
+              What pet care services do you offer?
+              <span class="faq-arrow">&#x25BC;</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We offer a range of services including pet grooming, boarding,
+                training, and regular vet check-ups. We take great care in
+                ensuring your pet is happy and healthy.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How can I book a pet grooming session?
+              <span class="faq-arrow">&#x25BC;</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                You can book a grooming session online through our website or by
+                calling our customer service. We recommend scheduling in advance
+                to secure your spot.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you provide emergency care for pets?
+              <span class="faq-arrow">&#x25BC;</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                While we do not have an emergency clinic, we can assist with
+                minor health concerns and help direct you to nearby emergency
+                vet services.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              What is your pet boarding policy?
+              <span class="faq-arrow">&#x25BC;</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We provide a comfortable and safe boarding environment for pets.
+                You can drop off your pet for day or overnight stays. We offer
+                individual accommodations for your pet's needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ End -->
+
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-md-5">
+    <div class="container-fluid bg-dark text-white py-2 px-sm-3 px-md-5">
       <div class="row pt-5">
         <div class="col-lg-4 col-md-12 mb-5">
           <h1 class="mb-3 display-5 text-capitalize text-white">
             <span class="text-primary">Pet</span>Lover
           </h1>
           <p class="m-0">
-            Ipsum amet sed vero et lorem stet eos ut, labore sed sed stet sea
-            est ipsum ut. Volup amet ea sanct ipsum, dolore vero lorem no duo
-            eirmod. Eirmod amet ipsum no ipsum lorem clita ut. Ut sed sit lorem
-            ea lorem sed, amet stet sit sea ea diam tempor kasd kasd. Diam
-            nonumy etsit tempor ut sed diam sed et ea
+            Your pet deserves the best. Contact us today to learn more about our
+            grooming, boarding, and training services!
           </p>
         </div>
         <div class="col-lg-8 col-md-12">
@@ -716,7 +695,7 @@
                 USA
               </p>
               <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-              <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+              <p><i class="fa fa-envelope mr-2"></i>petlover@gmail.com</p>
               <div class="d-flex justify-content-start mt-4">
                 <a
                   class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
@@ -747,34 +726,26 @@
             <div class="col-md-4 mb-5">
               <h5 class="text-primary mb-4">Popular Links</h5>
               <div class="d-flex flex-column justify-content-start">
-                <a class="text-white mb-2" href="#"
+                <a class="text-white mb-2" href="index.html"
                   ><i class="fa fa-angle-right mr-2"></i>Home</a
                 >
-                <a class="text-white mb-2" href="#"
+                <a class="text-white mb-2" href="#divAbout"
                   ><i class="fa fa-angle-right mr-2"></i>About Us</a
                 >
-                <a class="text-white mb-2" href="#"
+                <a class="text-white mb-2" href="#divService"
                   ><i class="fa fa-angle-right mr-2"></i>Our Services</a
                 >
-                <a class="text-white mb-2" href="#"
+                <a class="text-white mb-2" href="#divTeam"
                   ><i class="fa fa-angle-right mr-2"></i>Our Team</a
                 >
                 <a class="text-white" href="#"
-                  ><i class="fa fa-angle-right mr-2"></i>Contact Us</a
+                  ><i class="fa fa-angle-right mr-2"></i>Dokumentacija</a
                 >
               </div>
             </div>
             <div class="col-md-4 mb-5">
               <h5 class="text-primary mb-4">Newsletter</h5>
               <form action="">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control border-0"
-                    placeholder="Your Name"
-                    required="required"
-                  />
-                </div>
                 <div class="form-group">
                   <input
                     type="email"
@@ -805,8 +776,8 @@
         <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
           <p class="m-0 text-white">
             &copy;
-            <a class="text-white font-weight-bold" href="#">Your Site Name</a>.
-            All Rights Reserved.
+            <a class="text-white font-weight-bold" href="#">Pet Lover</a>. All
+            Rights Reserved.
 
             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
             Designed by
@@ -869,6 +840,8 @@
             placeholder="Your Email"
             required
           />
+
+          <span class="error"></span>
 
           <span class="error"></span>
           <button type="submit" class="btn btn-primary" id="submitPlan">
