@@ -51,7 +51,7 @@ let links = [
 ]
 
 function createLink(link) {
-  let additionalClass = link.text === "Author" ? "d-md-none" : ""; // Vidljivo samo na malim ekranima
+  let additionalClass = link.text === "Author" ? "d-md-none" : ""; 
   let html = `<a href="${link.path}" class="nav-item nav-link ${additionalClass} ${link.isActive ? 'active' : ''}">${link.text}</a>`;
   return html;
 }
@@ -591,6 +591,27 @@ backToTopButton.addEventListener('click', (event) => {
     behavior: 'smooth' 
   });
 });
+
+const dateSelect = document.getElementById("reservation-date");
+
+const today = new Date();
+
+for (let i = 1; i <= 5; i++) {
+  const futureDate = new Date(today); 
+  futureDate.setDate(today.getDate() + i); 
+  
+  const month = ("0" + (futureDate.getMonth() + 1)).slice(-2); 
+  const day = ("0" + futureDate.getDate()).slice(-2); 
+  const year = futureDate.getFullYear();
+  const formattedDate = `${month}/${day}/${year}`;
+
+  const option = document.createElement("option");
+  option.value = formattedDate; 
+  option.textContent = formattedDate; 
+
+  dateSelect.appendChild(option);
+}
+
 
 //jQuery 
 $(document).ready(function () {

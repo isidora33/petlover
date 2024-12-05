@@ -79,7 +79,7 @@
       <nav
         class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5"
       >
-        <a href="" class="navbar-brand d-block d-lg-none">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
           <h1 class="m-0 display-5 text-capitalize font-italic text-white">
             <span class="text-primary">Pet</span>Lover
           </h1>
@@ -309,10 +309,10 @@
           Meet Our <span class="text-primary">Team Member</span>
         </h1>
       </div>
-      <div class="row hiddenDiv mb-4">
+      <div class="row mb-4">
         <div class="col-lg-3 col-md-6">
           <div
-            class="team card position-relative overflow-hidden border-0 mb-4"
+            class="team card position-relative overflow-hidden border-0 mb-4 hiddenDiv"
           >
             <img class="card-img-top" src="img/team-1.jpg" alt="" />
             <div class="card-body text-center p-0">
@@ -355,7 +355,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
           <div
-            class="team card position-relative overflow-hidden border-0 mb-4"
+            class="team card position-relative overflow-hidden border-0 mb-4 hiddenDiv"
           >
             <img class="card-img-top" src="img/team-2.jpg" alt="" />
             <div class="card-body text-center p-0">
@@ -398,7 +398,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
           <div
-            class="team card position-relative overflow-hidden border-0 mb-4"
+            class="team card position-relative overflow-hidden border-0 mb-4 hiddenDiv"
           >
             <img class="card-img-top" src="img/team-3.jpg" alt="" />
             <div class="card-body text-center p-0">
@@ -441,7 +441,7 @@
         </div>
         <div class="col-lg-3 col-md-6">
           <div
-            class="team card position-relative overflow-hidden border-0 mb-4"
+            class="team card position-relative overflow-hidden border-0 mb-4 hiddenDiv"
           >
             <img class="card-img-top" src="img/team-4.jpg" alt="" />
             <div class="card-body text-center p-0">
@@ -525,18 +525,17 @@
             >
             <select id="reservation-date" class="custom-select border-0 px-4">
               <option selected hidden>Select Reservation Date</option>
-              <option value="1">Service 1</option>
-              <option value="2">Service 1</option>
-              <option value="3">Service 1</option>
             </select>
           </div>
 
           <div class="form-group">
             <select id="reservation-time" class="custom-select border-0 px-4">
               <option selected hidden>Select Reservation Time</option>
-              <option value="1">Service 1</option>
-              <option value="2">Service 1</option>
-              <option value="3">Service 1</option>
+              <option value="12:00 AM">12:00 AM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
             </select>
             <span class="error"></span>
           </div>
@@ -616,7 +615,7 @@
         </h1>
       </div>
       <div class="row justify-content-center mb-5">
-        <div class="col-10">
+        <div class="col-lg-10 col-12">
           <div class="faq-item">
             <button class="faq-question">
               What pet care services do you offer?
