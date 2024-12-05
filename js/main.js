@@ -41,13 +41,19 @@ let links = [
     path : "index.html#divFAQ",
     text: "FAQ",
     isActive: false
-},
+  },
+  {
+  path : "author.html",
+  text: "Author",
+  isActive: false,
+  },
     
 ]
 
 function createLink(link) {
-    let html = `<a href="${link.path}" class="nav-item nav-link ${link.isActive ? 'active' : ''}">${link.text}</a>`;
-    return html
+  let additionalClass = link.text === "Author" ? "d-md-none" : ""; // Vidljivo samo na malim ekranima
+  let html = `<a href="${link.path}" class="nav-item nav-link ${additionalClass} ${link.isActive ? 'active' : ''}">${link.text}</a>`;
+  return html;
 }
 
 let menu = ""
@@ -55,6 +61,8 @@ let menu = ""
 for(let link of links) {
     menu += createLink(link)
 }
+
+
 
 let navMenu = document.querySelector("#menu")
 
