@@ -1,4 +1,3 @@
-//Dinamicko ispisivanje menija
 let links = [
    
     {

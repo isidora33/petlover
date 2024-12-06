@@ -171,7 +171,6 @@ const services = [
     serviceContainer.appendChild(colDiv);
   });
   
-  
 
 //Dinamicko ispisivanje Features
 
@@ -340,7 +339,7 @@ var bookingBtn = document.querySelector('#bookBtn');
 var divCareOptions = document.getElementById('radio-pet-care');
 
 
-var regUserName = /^[A-Z][a-z]{2,14}(\s[A-Z][a-z]{2,24})*$/;
+var regUserName = /^[A-Z][a-z]{2,14}(\s[A-Z][a-z]{2,19})*$/;
 var regUserEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 //Funkcije za proveru svakog elementa forme
@@ -477,7 +476,7 @@ terms.addEventListener('click', () =>{
   }
 })
 
-//Validacija pop up forme
+//Validacija modal forme
 var userNamePlan = document.querySelector('#nameForPlan');
 var emailPlan = document.querySelector('#emailForPlan');
 var submitPlan = document.querySelector('#submitPlan');
@@ -574,24 +573,7 @@ pricingPlan.addEventListener("change",()=>{
   }
 })
 
-const backToTopButton = document.querySelector('.back-to-top');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) { 
-    backToTopButton.style.display = 'block';
-  } else {
-    backToTopButton.style.display = 'none';
-  }
-});
-
-backToTopButton.addEventListener('click', (event) => {
-  event.preventDefault(); 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth' 
-  });
-});
-
+//Generisanje 5 narednih datuma
 const dateSelect = document.getElementById("reservation-date");
 
 const today = new Date();
@@ -629,7 +611,7 @@ $(document).ready(function () {
   animateOnScroll();
   $(window).on('scroll', animateOnScroll);
 
-  //Sign up popup
+  //Sign up modal
   $(".sign-up-btn").on("click", function (e) {
     e.preventDefault();
 

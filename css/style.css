@@ -4146,6 +4146,8 @@ h6 {
   padding: 0;
   list-style-type: none;
 }
+/* Stilizovanje forme */
+
 #divBooking::before {
   content: "";
   position: absolute;
@@ -4255,24 +4257,6 @@ form#bookingForm button:hover {
   padding: 15px;
 }
 
-.testimonial-carousel .owl-dots {
-  margin-top: 25px;
-  text-align: center;
-}
-
-.testimonial-carousel .owl-dot {
-  display: inline-block;
-  margin: 0 5px;
-  width: 12px;
-  height: 12px;
-  border-radius: 10px;
-  background: #dddddd;
-}
-
-.testimonial-carousel .owl-dot.active {
-  background: var(--primary);
-}
-
 .back-to-top {
   position: fixed;
   bottom: 20px;
@@ -4287,7 +4271,8 @@ form#bookingForm button:hover {
 .back-to-top:hover {
   opacity: 1;
 }
-/* Pop up style */
+
+/* Modal stil */
 
 .popup {
   display: none;
@@ -4322,7 +4307,7 @@ form#bookingForm button:hover {
   cursor: pointer;
 }
 
-/* Stil za formu unutar popupa */
+/* Stil za formu unutar modala */
 .popup-content input,
 .popup-content select,
 .popup-content button {
@@ -4361,51 +4346,7 @@ body.popup-open {
   padding: 0;
 }
 
-.testimonial-fade {
-  position: relative;
-  overflow: hidden;
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.testimonial-item {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.testimonial-item.active {
-  display: block;
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.testimonial-item h5 {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.testimonial-item i {
-  color: var(--gray);
-  font-size: 14px;
-}
-
-/* FAQ stilovi */
+/* FAQ stil */
 
 .faq-item {
   margin-bottom: 0;
